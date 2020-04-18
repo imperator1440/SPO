@@ -4,7 +4,6 @@
 #include <unistd.h>
 #include "conio.h"
 
-#pragma clang diagnostic ignored "-Wmissing-noreturn"
 #define FROM_CHILD SIGUSR1
 #define FROM_PARENT SIGUSR2
 
@@ -53,15 +52,10 @@ int main() {
     sa.sa_handler = signalHandler;
     sigaction(FROM_PARENT, &sa, nullptr);
     sigaction(FROM_CHILD, &sa, nullptr);
-    //int max = 10;
-    std::cout << "\"+\" : create process\n\"-\" : delete last process\n\"q\" : close program" << std::endl;
     while (true) {
         while (kbhit()) {
             switch (getch_(0)) {
-                case '+':
-                    //if (pidsVector.size() >= max) {
-                        //break;
-                    //}
+                case '+':          
                     switch (int pid = fork()) {
                         case -1:
                             std::cout << "Error." << std::endl;
@@ -79,11 +73,11 @@ int main() {
                         kill(pidsVector.at(pidsVector.size() - 1), SIGTERM);
                         pidsVector.pop_back();
                         if (pidsVector.empty()) {
-                            std::cout << R"(No processes running, enter "+" to add new one or "q" to exit the program.)"
+                            std::cout << R"(No processes running.)"
                                       << std::endl;
                         }
                     } else {
-                        std::cout << R"(No processes running, enter "+" to add new one or "q" to exit the program.)" << std::endl;
+                        std::cout << R"(No processes running.)" << std::endl;
                     }
                     break;
                 case 'q':
