@@ -13,7 +13,7 @@ int main() {
 	}
 	DWORD read = 0;
 	char buff[80];
-	while (1) {
+	while (true) {
 		WaitForSingleObject(canPrint, INFINITE);
 		memset(buff, 0, 80);
 		ReadFile(pipe, buff, 79, &read, NULL);
