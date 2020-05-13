@@ -29,7 +29,6 @@ DWORD WINAPI writeThread(LPVOID information)
 		offset = strlen((char*)information);
 		writeTestFile(filePath.c_str(), (const char*)information, offset, size);
 		size += offset;
-		offset = 0;
 
 		LeaveCriticalSection(&writeSection);
 		Sleep(70);
