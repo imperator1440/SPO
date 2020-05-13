@@ -1,6 +1,7 @@
 
 #include "stdafx.h"
 #include <iostream>
+#include "mylib.h"
 
 BOOL ReadTestFile(const char* filePath, const char* message)
 {
