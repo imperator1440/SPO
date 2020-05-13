@@ -26,7 +26,7 @@ int main() {
 	std::stack<HANDLE> threadStack;
 	InitializeCriticalSection(&cs);
 	std::cout << "+ - create thread\n- - terminate thread\nq - terminate all threads\n";
-	while (1) {
+	while (true) {
 		fflush(stdin);
 		switch (_getch()) {
 		case '+':
